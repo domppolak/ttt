@@ -3,23 +3,24 @@ services:
   backend:
     container_name: backend
     hostname: backend
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-      target: backend
-    network_mode: "host"
+    image: domppolak/aws-ttt-backend
+    networks:
+      - priv-network
     ports:
       - "8080:8080"
-    env_file: .env
 
   frontend:
     container_name: frontend
     hostname: frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-      target: frontend
-    network_mode: "host"
+    image: domppolak/aws-ttt-frontend
+    networks:
+      - priv-network
     ports:
       - "4200:80"
-    env_file: .env
+    environment:
+      - BASE_URL:
+      - BASE_WEBSOCKET: 
+
+networks:
+  priv-network:
+    driver: bridge
