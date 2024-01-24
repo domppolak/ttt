@@ -1,0 +1,52 @@
+<div class="d-flex p-2">
+  <div *ngIf="!gameStarted" class="d-flex flex-column max-w-lg p-8 mx-auto mt-10 rounded">
+    <div class="mt-2 mx-auto w-100">
+      <button class="btn btn-primary btn-block w-100" (click)="startGame()">Start Game</button>
+    </div>
+    <div *ngIf="!gameStarted" class="mt-2 mx-auto w-100">
+      <button class="btn btn-success btn-block w-100" (click)="connectRandomGame()">Connect to Random Game</button>
+    </div>
+    <div *ngIf="!gameStarted" class="mt-2 mx-auto w-100">
+      <button class="btn btn-success btn-block w-100" (click)="getRanking()">Players ranking</button>
+    </div>
+    <div *ngIf="!gameStarted && isGetPlayerRanking" class="container mt-4">
+      <div *ngIf="players && players.length > 0">
+        <table class = "table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">Player ID</th>
+            <th scope="col">Wygrane</th>
+            <th scope="col">Przegrane</th>
+            <th scope="col">Porażki</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let player of players">
+            <td>{{ player.id }}</td>
+            <td>{{ player.wins }}</td>
+            <td>{{ player.lost }}</td>
+            <td>{{ player.draws }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="!players || players.length === 0">
+        <p>Brak danych do wyświetlenia.</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="gameStarted" class="d-flex flex-column max-w-lg p-8 mx-auto rounded-0">
+    <h2>{{message}}</h2>
+    <table>
+      <tr *ngFor="let row of gameBoard; let i = index">
+        <td *ngFor="let cell of row; let j = index">
+          <button class="btn btn-outline-dark btn-lg btn-block rounded-0 mt-0 custom-btn" [disabled]="(cell !== '' || isDisabled === false)" (click)="clickGameSlot(i, j)">{{ cell }}</button>
+        </td>
+      </tr>
+    </table>
+    <div *ngIf="gameStarted && gameFinished" class="mt-2 mx-auto w-100">
+      <button class="btn btn-success btn-block w-100" (click)="finishGame()">Play Again</button>
+    </div>
+  </div >
+</div>
+

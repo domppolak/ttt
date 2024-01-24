@@ -1,0 +1,17 @@
+<div class="d-flex p-2">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="d-flex flex-column bg-slate-800 max-w-lg p-8 mx-auto mt-10 rounded">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" id="username" formControlName="login"/>
+      <mat-error>Required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" id="password" formControlName="password"/>
+      <mat-error>Required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
+  </form>
+</div>
+
+
