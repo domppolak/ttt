@@ -8,7 +8,7 @@ Dla docker-compose wybieramy platformę dokera
 
 ![platform_docker.png](images/konfiguracja2.png)
 
-Następnie w kolejnej dodajemy nasz plik z dockerem
+Następnie w kolejnej zakładce Application Code dodajemy nasz plik yaml budujący naszą aplikację
 
 ![application_code.png](images/konfiguracja3.png)
 
