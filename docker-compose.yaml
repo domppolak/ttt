@@ -3,24 +3,25 @@ services:
   backend:
     container_name: backend
     hostname: backend
-    image: domppolak/aws-ttt-backend
-    networks:
-      - priv-network
+    image: "domppolak/aws-ttt-backend"
     ports:
       - "8080:8080"
+    networks:
+      - my-network
 
   frontend:
     container_name: frontend
     hostname: frontend
-    image: domppolak/aws-ttt-frontend
-    networks:
-      - priv-network
+    image: "domppolak/aws-ttt-frontend"
     ports:
-      - "4200:80"
+      - "80:80"
+    networks:
+      - my-network
     environment:
-      - BASE_URL:
-      - BASE_WEBSOCKET: 
+      - BASE_URL=
+      - BASE_WEBSOCKET=
 
 networks:
-  priv-network:
+  my-network:
     driver: bridge
+
